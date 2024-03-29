@@ -75,6 +75,7 @@ def process_documents():
     return redirect('/chat')
 
 @app.route('/chat', methods=['GET', 'POST'])
+
 def chat():
     global vectorstore, conversation_chain, chat_history
 
@@ -89,22 +90,25 @@ def chat():
         # Define CSV file path
         csv_file_path = 'chat_history.csv'
         
-        # Read existing data or initialize an empty DataFrame
         try:
-            df = pd.read_csv(csv_file_path)
+            df = pd.read_csv(csv_file_path, header=None)
+            # Ensure the headers are present, add if missing
+            if df.iloc[0, 0] != 'Questions' or df.iloc[1, 0] != 'Answers':
+                df.columns = pd.RangeIndex(start=1, stop=df.shape[1] + 1, step=1)
+                df.insert(0, 0, ['Questions', 'Answers'])  # Insert headers if not found
         except FileNotFoundError:
-            df = pd.DataFrame()
+            # Initializing with headers
+            df = pd.DataFrame([['Questions'], ['Answers']])
         
-        # Find the next available column (for a new question-answer pair)
-        next_col = len(df.columns) // 2  # Assuming each Q&A occupies 2 columns
-        # Append the new question and answer as new columns
-        df[f'Question {next_col+1}'] = [user_question] + [None] * (len(df.index) - 1)
-        df[f'Answer {next_col+1}'] = [response_text] + [None] * (len(df.index) - 1)
+        # Append the new question and answer. Questions go in the first row, answers in the second.
+        df.loc[0, df.shape[1]] = user_question  # Add question at the end of the first row
+        df.loc[1, df.shape[1] - 1] = response_text  # Add answer aligned with its question
         
-        # Write the updated DataFrame back to CSV
-        df.to_csv(csv_file_path, index=False)
+        # Write/overwrite the updated DataFrame to CSV, without a header and index
+        df.to_csv(csv_file_path, index=False, header=False)
 
     return render_template('chat.html', chat_history=chat_history)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
