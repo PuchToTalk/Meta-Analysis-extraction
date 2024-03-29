@@ -1,4 +1,4 @@
-#### Meta-Analysis data extraction
+# Meta-Analysis data extraction
 
 Supervised by Dr. M. Nguyen, Vy Nguyen
 
