@@ -14,6 +14,7 @@ from langchain.chains import ConversationalRetrievalChain
 import faiss
 import constants
 import csv
+import pandas as pd
 
 
 os.environ['OPENAI_API_KEY'] = constants.APIKEY
@@ -80,26 +81,30 @@ def chat():
     if request.method == 'POST':
         user_question = request.form['user_question']
         response = conversation_chain({'question': user_question})
-        chat_history = response['chat_history']
-
-        # Assuming response_object has a method or property to get the actual response text.
-        # This is a placeholder, replace `.get_response_text()` with the actual method/attribute
-        # to extract the response text from the response_object.
-        response_text = response.get('answer', 'No answer found')
-
-        # Append to chat_history for display purposes
-        chat_history.append({'question': user_question, 'answer': response_text})
+        response_text = response.get('answer', 'No answer found') if isinstance(response, dict) else 'Response format not recognized'
         
-        # Append the question and answer to a CSV file
-        with open('chat_history.csv', mode='a', newline='', encoding='utf-8') as file:
-            writer = csv.writer(file)
-            # Check if the file is empty to write headers
-            if file.tell() == 0:
-                writer.writerow(["Question", "Answer"])
-            writer.writerow([user_question, response_text])
+        chat_history.append({'type': 'question', 'content': user_question})
+        chat_history.append({'type': 'answer', 'content': response_text})
+        
+        # Define CSV file path
+        csv_file_path = 'chat_history.csv'
+        
+        # Read existing data or initialize an empty DataFrame
+        try:
+            df = pd.read_csv(csv_file_path)
+        except FileNotFoundError:
+            df = pd.DataFrame()
+        
+        # Find the next available column (for a new question-answer pair)
+        next_col = len(df.columns) // 2  # Assuming each Q&A occupies 2 columns
+        # Append the new question and answer as new columns
+        df[f'Question {next_col+1}'] = [user_question] + [None] * (len(df.index) - 1)
+        df[f'Answer {next_col+1}'] = [response_text] + [None] * (len(df.index) - 1)
+        
+        # Write the updated DataFrame back to CSV
+        df.to_csv(csv_file_path, index=False)
 
     return render_template('chat.html', chat_history=chat_history)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
