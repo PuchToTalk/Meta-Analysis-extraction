@@ -1,0 +1,10 @@
+Section A: General questions
+1.	In what country and region was this study conducted?
+2.	In what setting was this study conducted (e.g., (1) Community hospital (2) University hospital (3) IV drug clinic/Opioid substitution (4) homeless shelter (5) prison (6) Sexual health center (7) specialist consultation (88) mixed (99) unknown (77) Other)? 
+3.	Were patients in this study seen in an inpatient or outpatient setting? 
+4.	 What is type of study design? (e.g., (1) Retrospective  (2) Prospective (3) Cross-sectional (88)Mixed (99) Unknown (77) Other)
+5.	What patient database did the study use? (e.g., (1) institutional EMR (2) international or national patient database (77)) other (please specify) (99) unknown (88) Mixed)
+6.	If this study used a national or international database, what is the name of the database? 
+7.	What is the study start date?
+8.	What is the study end date?
+9.	What type of hepatitis C virus (HCV) treatment did patients in this study receive? (e.g., (1) Direct acting antivirals without interferon (2) Direct acting antivirals with interferon (3) Direct acting antivirals but unknown if received with or without interferon) 
