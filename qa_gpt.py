@@ -7,6 +7,7 @@ from flask import Flask, render_template, request, redirect
 from PyPDF2 import PdfReader
 from pdfminer.high_level import extract_text
 
+from sentence_transformers import SentenceTransformer, util
 from openai import OpenAI
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.chat_models import ChatOpenAI
@@ -27,17 +28,56 @@ os.environ['OPENAI_API_KEY'] = constants.APIKEY
 
 
 class ConversationalChain:
-    def __init__(self, vectorstore):
+    def __init__(self, vectorstore, text_chunks):
         self.vectorstore = vectorstore
-        # Initialize any additional components needed
+        self.text_chunks = text_chunks  # Store the text chunks for retrieval
+        self.model = SentenceTransformer('all-MiniLM-L6-v2')  # Initialize the model here
+
+    def refine_response(self, question, relevant_chunk):
+        # Split the chunk into sentences
+        
+        sentences = relevant_chunk.split('. ')
+        
+        # Compute embeddings for the question and each sentence in the chunk
+        question_embedding = self.model.encode(question, convert_to_tensor=True)
+        sentence_embeddings = self.model.encode(sentences, convert_to_tensor=True)
+        
+        # Compute semantic similarity between the question and each sentence
+        similarities = util.pytorch_cos_sim(question_embedding, sentence_embeddings)[0]
+        
+        # Find the sentence with the highest similarity
+        highest_similarity_index = similarities.argmax()
+        
+        # Return the most relevant sentence
+        return sentences[highest_similarity_index]
+
+    # In the __call__ method, refine the response like so:
+    
 
     def __call__(self, input_dict):
         question = input_dict['question']
-        # Logic to use vectorstore to find relevant information and generate a response
-        # This is a placeholder. Replace with your actual logic.
-        response = "This is a placeholder response to: " + question
-        return {'answer': response}
+        
+        # Convert the question to an embedding
+        question_embedding = get_embedding(question)
+        question_embedding = np.array(question_embedding, dtype=np.float32).reshape(1, -1)  # Reshape for FAISS
+        
+        # Search the vectorstore for the most relevant chunk
+        D, I = self.vectorstore.search(question_embedding, k=1)  # Search for the top 1 closest chunk
+        
+        # Retrieve the corresponding text chunk
+        relevant_chunk_index = I[0][0]  # Get the index of the most relevant chunk
+        relevant_chunk = self.text_chunks[relevant_chunk_index]
 
+        # Placeholder for actual response generation logic
+        # You might use additional NLP models here to refine the response based on the relevant chunk
+        #response = "Based on your question, here's a relevant section: " + relevant_chunk
+
+        refined_response = self.refine_response(question, relevant_chunk)
+        response = "Based on your question, here's a relevant section: " + refined_response
+        
+
+        
+        return {'answer': response}
 
 
 def get_pdf_text(pdf_path):
@@ -87,8 +127,10 @@ def get_vectorstore(text_chunks):
 
 
 
-def get_conversation_chain(vectorstore):
-    return ConversationalChain(vectorstore)
+def get_conversation_chain(vectorstore, text_chunks):
+    # Now passing both required arguments to the ConversationalChain constructor
+    return ConversationalChain(vectorstore, text_chunks)
+
 
 
 pdf_path = '/Users/paulc/Documents/Paul/Stanford/RA/Work/Keast.pdf'
@@ -97,7 +139,9 @@ raw_text = get_pdf_text(pdf_path)
 text_chunks = get_text_chunks(raw_text)
 vectorstore = get_vectorstore(text_chunks)
 # Initialize conversation chain with the vectorstore
-conversation_chain = get_conversation_chain(vectorstore)
+
+conversation_chain = get_conversation_chain(vectorstore, text_chunks)
+
 
 
 

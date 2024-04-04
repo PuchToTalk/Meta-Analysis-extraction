@@ -1,11 +1,49 @@
 question,answer
-Section A: General questions,This is a placeholder response to: Section A: General questions
-1.	In what country and region was this study conducted?,This is a placeholder response to: 1.	In what country and region was this study conducted?
-"2.	In what setting was this study conducted (e.g., (1) Community hospital (2) University hospital (3) IV drug clinic/Opioid substitution (4) homeless shelter (5) prison (6) Sexual health center (7) specialist consultation (88) mixed (99) unknown (77) Other)?","This is a placeholder response to: 2.	In what setting was this study conducted (e.g., (1) Community hospital (2) University hospital (3) IV drug clinic/Opioid substitution (4) homeless shelter (5) prison (6) Sexual health center (7) specialist consultation (88) mixed (99) unknown (77) Other)?"
-3.	Were patients in this study seen in an inpatient or outpatient setting?,This is a placeholder response to: 3.	Were patients in this study seen in an inpatient or outpatient setting?
-"4.	 What is type of study design? (e.g., (1) Retrospective  (2) Prospective (3) Cross-sectional (88)Mixed (99) Unknown (77) Other)","This is a placeholder response to: 4.	 What is type of study design? (e.g., (1) Retrospective  (2) Prospective (3) Cross-sectional (88)Mixed (99) Unknown (77) Other)"
-"5.	What patient database did the study use? (e.g., (1) institutional EMR (2) international or national patient database (77)) other (please specify) (99) unknown (88) Mixed)","This is a placeholder response to: 5.	What patient database did the study use? (e.g., (1) institutional EMR (2) international or national patient database (77)) other (please specify) (99) unknown (88) Mixed)"
-"6.	If this study used a national or international database, what is the name of the database?","This is a placeholder response to: 6.	If this study used a national or international database, what is the name of the database?"
-7.	What is the study start date?,This is a placeholder response to: 7.	What is the study start date?
-8.	What is the study end date?,This is a placeholder response to: 8.	What is the study end date?
-"9.	What type of hepatitis C virus (HCV) treatment did patients in this study receive? (e.g., (1) Direct acting antivirals without interferon (2) Direct acting antivirals with interferon (3) Direct acting antivirals but unknown if received with or without interferon)","This is a placeholder response to: 9.	What type of hepatitis C virus (HCV) treatment did patients in this study receive? (e.g., (1) Direct acting antivirals without interferon (2) Direct acting antivirals with interferon (3) Direct acting antivirals but unknown if received with or without interferon)"
+Section A: General questions,"Based on your question, here's a relevant section:  Table  1  presents  the  full  descriptive  statistics  of 
+members meeting inclusion criteria.
+
+Of  the  464  cases  who  were  treated,  only  168  cases  had  a 
+reported  SVR,  with  8  involving  treatment  failure"
+1.	In what country and region was this study conducted?,"Based on your question, here's a relevant section: 
+
+SVR  information  was  available  for  less  than  half  of  the 
+study  population  (36.2%;  168  of  464)"
+"2.	In what setting was this study conducted (e.g., (1) Community hospital (2) University hospital (3) IV drug clinic/Opioid substitution (4) homeless shelter (5) prison (6) Sexual health center (7) specialist consultation (88) mixed (99) unknown (77) Other)?","Based on your question, here's a relevant section:  Table  1  presents  the  full  descriptive  statistics  of 
+members meeting inclusion criteria.
+
+Of  the  464  cases  who  were  treated,  only  168  cases  had  a 
+reported  SVR,  with  8  involving  treatment  failure"
+3.	Were patients in this study seen in an inpatient or outpatient setting?,"Based on your question, here's a relevant section: 
+Potentially,  this  may  also  reflect  a  prescriber’s  choice  to  treat 
+or attributes of a patient seeking care"
+"4.	 What is type of study design? (e.g., (1) Retrospective  (2) Prospective (3) Cross-sectional (88)Mixed (99) Unknown (77) Other)","Based on your question, here's a relevant section: Independent variables included 
+demographics  (i.e.,  age,  sex,  micropolitan/rural  residence); 
+HCV treatment; prior HCV treatment (i.e., with peg-interferon, 
+
+1262  Journal of Managed Care & Specialty Pharmacy 
+
+JMCP  November 2019  Vol"
+"5.	What patient database did the study use? (e.g., (1) institutional EMR (2) international or national patient database (77)) other (please specify) (99) unknown (88) Mixed)","Based on your question, here's a relevant section: Independent variables included 
+demographics  (i.e.,  age,  sex,  micropolitan/rural  residence); 
+HCV treatment; prior HCV treatment (i.e., with peg-interferon, 
+
+1262  Journal of Managed Care & Specialty Pharmacy 
+
+JMCP  November 2019  Vol"
+"6.	If this study used a national or international database, what is the name of the database?","Based on your question, here's a relevant section: 2015;162(6):397-406.
+
+6"
+7.	What is the study start date?,"Based on your question, here's a relevant section:  Also,  ≥ 6  months  of  continuous  Medicaid 
+eligibility was required"
+8.	What is the study end date?,"Based on your question, here's a relevant section:  Also,  ≥ 6  months  of  continuous  Medicaid 
+eligibility was required"
+"9.	What type of hepatitis C virus (HCV) treatment did patients in this study receive? (e.g., (1) Direct acting antivirals without interferon (2) Direct acting antivirals with interferon (3) Direct acting antivirals but unknown if received with or without interferon)","Based on your question, here's a relevant section: Before 
+2011, HCV was treated with pegylated interferon and ribavirin 
+combination  therapies,  achieved  sustained  virologic  response 
+(SVR) rates of approximately 50%, and had high occurrences of 
+side effects.2,4 Beginning in 2011, improved cure rates followed 
+the  first  generation  of  oral  direct-acting  antivirals  (DAAs), 
+though they still required combination use with interferon and 
+ribavirin.4 
+
+By 2013, the U.S"
